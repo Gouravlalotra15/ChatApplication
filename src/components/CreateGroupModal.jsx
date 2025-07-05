@@ -34,7 +34,6 @@ function CreateGroupModal({ onClose }) {
         members: [...selectedMembers],
         avatarColor: "bg-orange-500",
         lastMessage: "Let's queue up at 7!",
-        lastSeen: "6:45 PM",
         messages: [],
       },
     });

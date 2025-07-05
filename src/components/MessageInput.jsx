@@ -16,7 +16,11 @@ function MessageInput({ type }) {
         type: "text",
         content: text,
         user: type === "anyhting" ? "ou" : currentUser,
-        timestamp: new Date().toLocaleTimeString(),
+        timestamp: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        }),
       };
 
       dispatch({

@@ -6,7 +6,7 @@ export const initialState = {
       name: "Gourav",
       status: "online",
       lastMessage: "Okay, I'll get it done.",
-      lastSeen: "2:31 PM",
+      lastSeen: "6:10 PM",
       avatarColor: "bg-blue-600",
       messages: [
         {
@@ -30,7 +30,7 @@ export const initialState = {
       name: "Dinkar",
       status: "online",
       lastMessage: "hey Dinkar! wanna play valorant today",
-      lastSeen: "2:31 PM",
+      lastSeen: "6:15 PM",
       avatarColor: "bg-purple-600",
       messages: [
         {
@@ -93,7 +93,6 @@ export function chatReducer(state, action) {
         state.activeChatId &&
         state.chats.find((chat) => chat.id === state.activeChatId)
       ) {
-        // Find the active chat and update it
         const updatedChats = state.chats.map((chat) => {
           if (chat.id === state.activeChatId) {
             return {
@@ -103,6 +102,11 @@ export function chatReducer(state, action) {
                 { id: Date.now().toString(), user, content, timestamp },
               ],
               lastMessage: content,
+              lastSeen: new Date().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              }),
             };
           } else if (chat.name === user) {
             return {
@@ -117,12 +121,16 @@ export function chatReducer(state, action) {
                 },
               ],
               lastMessage: content,
+              lastSeen: new Date().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              }),
             };
           }
           return chat;
         });
 
-        // Move the active chat to the top
         const activeChat = updatedChats.find(
           (chat) => chat.id === state.activeChatId
         );
@@ -140,18 +148,21 @@ export function chatReducer(state, action) {
         state.activeChatId &&
         state.groups.find((group) => group.id === state.activeChatId)
       ) {
-        // Find the active group and update it
         const updatedGroups = state.groups.map((group) =>
           group.id === state.activeChatId
             ? {
                 ...group,
                 messages: [...group.messages, action.payload],
                 lastMessage: action.payload.content,
+                lastSeen: new Date().toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: true,
+                }),
               }
             : group
         );
 
-        // Move the active group to the top
         const activeGroup = updatedGroups.find(
           (group) => group.id === state.activeChatId
         );

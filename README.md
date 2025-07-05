@@ -1,12 +1,20 @@
-# React + Vite
+# ChatApplication
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A chat application that enables messaging between users. It supports one-on-one and group conversations with a simple, user-friendly interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Read, write, and delete chats.
+- Create one-on-one and group chats.
+- Search functionality to find messages in personal and group conversations.
+- Automatically scrolls to the latest message when the chat window overflows.
+- Latest chat appears at the top upon interaction (sending a message and updating last seen).
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Install my-project with npm
+
+```bash
+  npm install my-project
+  cd my-project
+```
