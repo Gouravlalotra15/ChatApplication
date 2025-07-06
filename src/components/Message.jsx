@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useChat } from "../context/ChatContext";
 
 function Message({ message, onDelete, type }) {
   const { state } = useChat();
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const dropdownRef = useRef(null);
 
   // Get the current user's name dynamically based on active chat
   const currentUser = state.chats.find(
@@ -12,30 +15,113 @@ function Message({ message, onDelete, type }) {
   // Check if the message is from the current user
   const isOwn = message.user === currentUser;
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    if (showDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showDropdown]);
+
+  const handleDeleteClick = () => {
+    setShowDropdown(false);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = () => {
+    onDelete(message.id);
+    setShowDeleteModal(false);
+  };
+
+  const cancelDelete = () => {
+    setShowDeleteModal(false);
+  };
+
   return (
-    <div className={`flex ${isOwn ? "justify-end" : "justify-start"}`}>
-      <div className=" px-3 py-2 bg-[#3a3a55] rounded-md shadow-sm text-sm relative">
-        {type === "group" && <span className="text-white">{message.user}</span>}
-        <div className="flex gap-4">
-          <div className="max-w-2xl text-white">{message.content} </div>
-          <div>
-            {isOwn && (
+    <>
+      <div className={`flex ${isOwn ? "justify-end" : "justify-start"}`}>
+        <div className=" px-3 py-2 bg-[#3a3a55] rounded-md shadow-sm text-sm relative">
+          {type === "group" && (
+            <span className="text-white">{message.user}</span>
+          )}
+          <div className="flex gap-4">
+            <div className="max-w-2xl text-white">{message.content} </div>
+            <div>
+              {isOwn && (
+                <div className="relative" ref={dropdownRef}>
+                  <button
+                    onClick={() => setShowDropdown(!showDropdown)}
+                    className="text-xs cursor-pointer p-1 hover:bg-gray-600 rounded"
+                  >
+                    <span class="material-symbols-outlined text-white">
+                      keyboard_arrow_down
+                    </span>
+                  </button>
+
+                  {showDropdown && (
+                    <div className="absolute right-0 top-6 bg-white border border-gray-200 rounded-md shadow-lg z-10 min-w-[120px] ">
+                      <button
+                        onClick={handleDeleteClick}
+                        className="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-gray-100 flex items-center gap-2 cursor-pointer"
+                      >
+                        <span className="material-symbols-outlined text-sm">
+                          delete
+                        </span>
+                        Delete
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+          <p className="text-[10px] text-gray-500 text-right ">
+            {message.timestamp}
+          </p>
+        </div>
+      </div>
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 bg-black/60  flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-sm w-full mx-4">
+            <div className="flex items-center gap-3 mb-4">
+              <span class="material-symbols-outlined">delete</span>
+              <h3 className="text-lg font-semibold text-gray-900">
+                Delete Message
+              </h3>
+            </div>
+            <p className="text-gray-600 mb-6">
+              Are you sure you want to delete this message? This action cannot
+              be undone.
+            </p>
+            <div className="flex gap-3 justify-end">
               <button
-                onClick={() => onDelete(message.id)}
-                className="text-xs cursor-pointer"
+                onClick={cancelDelete}
+                className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50"
               >
-                <span className=" absolute top-2.5 right-0 material-symbols-outlined text-red-500">
-                  delete
-                </span>
+                Cancel
               </button>
-            )}
+              <button
+                onClick={confirmDelete}
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
-        <p className="text-[10px] text-gray-500 text-right mt-1">
-          {message.timestamp}
-        </p>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

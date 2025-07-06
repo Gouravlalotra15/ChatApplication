@@ -30,7 +30,7 @@ function Sidebar() {
           {["all", "people", "groups"].map((tab) => (
             <button
               key={tab}
-              className={`capitalize mr-3 px-2 pb-1 border-b-2 ${
+              className={`capitalize mr-3 px-2 pb-1 border-b-2 cursor-pointer ${
                 activeTab === tab
                   ? "border-green-600 text-green-600 font-medium"
                   : "border-transparent text-gray-500"
@@ -47,7 +47,7 @@ function Sidebar() {
         {activeTab === "groups" && (
           <div>
             <button
-              className="w-full text-blue-500 border-b border-blue-500 py-2"
+              className="w-full text-blue-500 border-b border-blue-500 py-2 cursor-pointer"
               onClick={() => setModalOpen(true)}
             >
               + Create Group
@@ -61,7 +61,7 @@ function Sidebar() {
         {activeTab === "people" && (
           <div>
             <button
-              className="w-full text-blue-500 border-b border-blue-500 py-2"
+              className="w-full text-blue-500 border-b border-blue-500 py-2 cursor-pointer"
               onClick={() => setNewChatModalOpen(true)}
             >
               + Start New Chat

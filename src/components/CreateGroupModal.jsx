@@ -86,15 +86,20 @@ function CreateGroupModal({ onClose }) {
             ))}
           </div>
         </div>
-        <button
-          className="w-full bg-green-500 text-white py-2 rounded-md"
-          onClick={handleCreateGroup}
-        >
-          Create Group
-        </button>
-        <button className="w-full mt-2 text-gray-500" onClick={onClose}>
-          Cancel
-        </button>
+        <div className="flex  items-center justify-center gap-3">
+          <button
+            className=" bg-blue-800 text-white py-2 px-4 rounded-md"
+            onClick={handleCreateGroup}
+          >
+            Create Group
+          </button>
+          <button
+            className=" text-gray-500 py-2 px-4 bg-slate-200 "
+            onClick={onClose}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );
