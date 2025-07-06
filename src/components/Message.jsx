@@ -14,19 +14,17 @@ function Message({ message, onDelete, type }) {
 
   return (
     <div className={`flex ${isOwn ? "justify-end" : "justify-start"}`}>
-      <div className=" px-3 py-2 bg-gray-100 rounded-md shadow-sm text-sm relative">
-        {type === "group" && (
-          <span style={{ color: `${message.userColor}` }}>{message.user}</span>
-        )}
+      <div className=" px-3 py-2 bg-[#3a3a55] rounded-md shadow-sm text-sm relative">
+        {type === "group" && <span className="text-white">{message.user}</span>}
         <div className="flex gap-4">
-          <div className="max-w-2xl">{message.content} </div>
+          <div className="max-w-2xl text-white">{message.content} </div>
           <div>
             {isOwn && (
               <button
                 onClick={() => onDelete(message.id)}
                 className="text-xs cursor-pointer"
               >
-                <span className=" absolute top-2.5 right-0 material-symbols-outlined">
+                <span className=" absolute top-2.5 right-0 material-symbols-outlined text-red-500">
                   delete
                 </span>
               </button>

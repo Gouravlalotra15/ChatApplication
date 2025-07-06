@@ -32,11 +32,11 @@ function MessageInput({ type }) {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center bg-[#2b2b3c] p-4">
       <input
         type="text"
         placeholder="Type a message"
-        className="flex-1 border p-2 rounded-md"
+        className="flex-1 bg-[#1e1e2f] text-white p-3 rounded-lg outline-none placeholder-[#9fa3b1] mr-2"
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={(e) => {
@@ -45,7 +45,7 @@ function MessageInput({ type }) {
       />
       <button
         onClick={handleSend}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md"
+        className="bg-[#4e9cff] text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
       >
         Send
       </button>

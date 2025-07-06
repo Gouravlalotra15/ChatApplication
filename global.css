@@ -1,1 +1,10 @@
 @import "tailwindcss";
+.dark {
+  --bg-main: #1e1e2f;
+  --bg-sidebar: #2b2b3c;
+  --text-primary: #f0f0f5;
+  --text-secondary: #9fa3b1;
+  --message-user: #3a3a55;
+  --message-other: #2f2f47;
+  --accent: #4e9cff;
+}

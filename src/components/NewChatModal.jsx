@@ -28,16 +28,16 @@ function NewChatModal({ onClose }) {
   };
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-screen flex justify-center items-center z-10 bg-black/50">
+    <div className="fixed top-0 left-0 h-screen w-screen flex justify-center items-center z-10 bg-black/60">
       <div className="flex justify-center items-center bg-white flex-col gap-8 px-8 py-10 w-lg">
-        <p className="text-lg">Create New Chat</p>
+        <p className="text-lg text-gray-950">Create New Chat</p>
 
         <input
           type="text"
           placeholder="Enter user's name"
           value={newPerson}
           onChange={(e) => setNewPerson(e.target.value)}
-          className="p-2 border mt-2"
+          className="p-2 border mt-2 text-gray-950"
         />
         <div>
           <button

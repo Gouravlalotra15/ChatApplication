@@ -25,7 +25,7 @@ function ChatWindow() {
 
   if (!activeChat) {
     return (
-      <div className="w-2/3 h-full flex items-center justify-center text-gray-400">
+      <div className="w-2/3 h-full flex items-center justify-center text-white bg-[#2b2b3c]">
         Select a chat to start messaging
       </div>
     );
@@ -39,15 +39,27 @@ function ChatWindow() {
   };
 
   return (
-    <div className="w-2/3 h-full flex flex-col">
-      <div className="flex justify-between items-center p-4 border-b">
+    <div className="w-2/3 h-full flex flex-col bg-[#2b2b3c]">
+      <div className="flex justify-between items-center p-4 border-b border-amber-50 ">
         <div>
-          <p className="text-lg font-medium">{activeChat.name}</p>
-          {activeChat.members && (
+          <div className="flex gap-4 items-center">
+            <div
+              className={`w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold ${activeChat.avatarColor}`}
+            >
+              {activeChat.name
+                .split(" ")
+                .map((word) => word[0])
+                .join("")
+                .substring(0, 2)}
+            </div>
+            <p className="text-lg font-medium text-white">{activeChat.name}</p>
+          </div>
+
+          {/* {activeChat.members && (
             <p className="text-sm text-green-500">
               ● {activeChat.members.length} member(s)
             </p>
-          )}
+          )} */}
         </div>
       </div>
 
@@ -68,7 +80,7 @@ function ChatWindow() {
         <div ref={chatEndRef} />
       </div>
 
-      <div className="p-4 border-t">
+      <div className="p-4 border-t border-amber-50">
         <MessageInput type={type} />
       </div>
     </div>

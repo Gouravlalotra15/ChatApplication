@@ -41,18 +41,20 @@ function CreateGroupModal({ onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50  flex justify-center items-center z-10">
+    <div className="fixed inset-0 bg-black/60  flex justify-center items-center z-10">
       <div className="bg-white p-6 rounded-md w-lg">
-        <h3 className="text-lg font-semibold mb-4">Create Group</h3>
+        <h3 className="text-lg font-semibold mb-4 text-gray-950">
+          Create Group
+        </h3>
         <input
           type="text"
           placeholder="Group Name"
-          className="border p-2 w-full rounded mb-4"
+          className="border p-2 w-full rounded mb-4 text-gray-950"
           value={groupName}
           onChange={(e) => setGroupName(e.target.value)}
         />
         <div className="mb-4">
-          <h4 className="font-medium">Add Members</h4>
+          <h4 className="font-medium text-gray-950">Add Members</h4>
           <div className="gap-1 flex flex-wrap ">
             {availableMembers.map((member) => (
               <div key={member}>
@@ -67,11 +69,11 @@ function CreateGroupModal({ onClose }) {
           </div>
         </div>
         <div className="mb-4">
-          <h4 className="font-medium">Selected Members</h4>
+          <h4 className="font-medium text-gray-950">Selected Members</h4>
           <div className="flex flex-wrap gap-1">
             {selectedMembers.map((member) => (
               <div key={member} className="flex items-center">
-                <div className="px-3 py-1 border rounded-md bg-blue-500 text-white">
+                <div className="px-3 py-1 border rounded-md bg-blue-500 ">
                   {member}
                   <button
                     onClick={() => handleRemoveMember(member)}

@@ -14,8 +14,8 @@ function Sidebar() {
   };
 
   return (
-    <div className="w-1/3 border-r-2 border-gray-200 h-full flex flex-col">
-      <div className="p-4 border-b border-gray-200 bg-blue-900">
+    <div className="w-1/3 border-r-2 border-gray-200 h-full flex flex-col bg-[#2b2b3c] text-[#f0f0f5] p-4">
+      <div className="p-4 border-b border-gray-200">
         <h2 className="text-xl font-semibold text-white">Messages</h2>
       </div>
       <div className="p-3 border-b border-gray-100">

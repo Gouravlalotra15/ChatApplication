@@ -24,13 +24,13 @@ function ChatList({ type, searchInput }) {
   }, [type, state.groups, state.chats, searchInput]);
 
   return (
-    <div className="flex-1 overflow-auto">
+    <div className="flex-1 overflow-auto  ">
       {displayChats.map((ele) => (
         <div
           key={ele.id}
           onClick={() => dispatch({ type: "SET_ACTIVE_CHAT", payload: ele.id })}
-          className={`flex items-center justify-between p-3 cursor-pointer border-b hover:bg-neutral-200 ${
-            state.activeChatId === ele.id ? "bg-neutral-200" : ""
+          className={`flex items-center justify-between p-3 cursor-pointer border-b hover:bg-[#3a3a55] ${
+            state.activeChatId === ele.id ? "bg-[#3a3a55]" : ""
           }`}
         >
           <div className="flex items-center">
@@ -50,10 +50,8 @@ function ChatList({ type, searchInput }) {
               </p>
             </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <p className="text-xs text-gray-400">last seen</p>
-            <p className="text-xs text-gray-400">{ele.lastSeen}</p>
-          </div>
+
+          <p className="text-xs text-gray-400">{ele.lastSeen}</p>
         </div>
       ))}
     </div>
