@@ -6,7 +6,7 @@ export const initialState = {
       name: "Gourav",
       status: "online",
       lastMessage: "Okay, I'll get it done.",
-      lastSeen: "6:10 PM",
+      lastSeen: "06:10 PM",
       avatarColor: "bg-blue-600",
       messages: [
         {
@@ -14,14 +14,14 @@ export const initialState = {
           user: "Gourav",
           type: "text",
           content: "hey Dinkar! wanna play valorant today",
-          timestamp: "6:10 pm",
+          timestamp: "06:10 pm",
         },
         {
           id: "m2",
           user: "Dinkar",
           type: "text",
           content: "Yup I'm all ready bro.",
-          timestamp: "6:15 pm",
+          timestamp: "06:15 pm",
         },
       ],
     },
@@ -30,7 +30,7 @@ export const initialState = {
       name: "Dinkar",
       status: "online",
       lastMessage: "hey Dinkar! wanna play valorant today",
-      lastSeen: "6:15 PM",
+      lastSeen: "06:15 PM",
       avatarColor: "bg-purple-600",
       messages: [
         {
@@ -38,14 +38,14 @@ export const initialState = {
           user: "Gourav",
           type: "text",
           content: "hey Dinkar! wanna play valorant today",
-          timestamp: "6:10 pm",
+          timestamp: "06:10 pm",
         },
         {
           id: "m2",
           user: "Dinkar",
           type: "text",
           content: "Yup I'm all ready bro.",
-          timestamp: "6:15 pm",
+          timestamp: "06:15 pm",
         },
       ],
     },
@@ -57,21 +57,21 @@ export const initialState = {
       members: ["Gourav", "Dinkar", "Mehul"],
       avatarColor: "bg-red-600",
       lastMessage: "Let's queue up at 7!",
-      lastSeen: "6:45 PM",
+      lastSeen: "06:45 PM",
       messages: [
         {
           id: "gm1",
           user: "Mehul",
           type: "text",
           content: "Let's queue up at 7!",
-          timestamp: "6:45 pm",
+          timestamp: "06:45 pm",
         },
         {
           id: "gm2",
           user: "Gourav",
           type: "text",
           content: "Cool, I’ll be there.",
-          timestamp: "6:46 pm",
+          timestamp: "06:46 pm",
         },
       ],
     },
@@ -215,6 +215,20 @@ export function chatReducer(state, action) {
           }),
         };
       return state;
+    }
+
+    case "DELETE_CHAT": {
+      const deleteChat = action.payload;
+      if (state.chats.find((ele) => ele.id === deleteChat.id))
+        return {
+          ...state,
+          chats: state.chats.filter((ele) => ele.id !== deleteChat.id),
+        };
+      else
+        return {
+          ...state,
+          groups: state.groups.filter((ele) => ele.id !== deleteChat.id),
+        };
     }
 
     case "CREATE_NEW_CHAT": {

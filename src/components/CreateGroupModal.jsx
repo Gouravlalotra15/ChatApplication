@@ -10,7 +10,6 @@ function CreateGroupModal({ onClose }) {
   useEffect(() => {
     setAvailableMembers((prev) => {
       const groupMembers = state.chats.map((ele) => ele.name);
-      console.log(groupMembers);
       return [...prev, ...groupMembers];
     });
   }, []);
@@ -26,6 +25,7 @@ function CreateGroupModal({ onClose }) {
   };
 
   const handleCreateGroup = () => {
+    if (!groupName) return;
     dispatch({
       type: "CREATE_NEW_GROUP",
       payload: {
@@ -33,8 +33,13 @@ function CreateGroupModal({ onClose }) {
         name: groupName,
         members: [...selectedMembers],
         avatarColor: "bg-orange-500",
-        lastMessage: "Let's queue up at 7!",
+        lastMessage: "",
         messages: [],
+        lastSeen: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        }),
       },
     });
     onClose();

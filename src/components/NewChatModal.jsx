@@ -12,7 +12,11 @@ function NewChatModal({ onClose }) {
         name: newPerson,
         status: "offline",
         lastMessage: "",
-        lastSeen: new Date().toLocaleTimeString(),
+        lastSeen: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        }),
         avatarColor: "bg-green-500",
         messages: [],
       };
