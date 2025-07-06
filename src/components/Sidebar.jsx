@@ -14,7 +14,7 @@ function Sidebar() {
   };
 
   return (
-    <div className="w-1/3 border-r-2 border-gray-200 h-full flex flex-col bg-[#2b2b3c] text-[#f0f0f5] p-4">
+    <div className="w-1/3 border-r-2 border-gray-200 h-full flex flex-col bg-[#111b21] text-[#f0f0f5] p-4">
       <div className="p-4 border-b border-gray-200">
         <h2 className="text-xl font-semibold text-white">Messages</h2>
       </div>
@@ -22,7 +22,7 @@ function Sidebar() {
         <input
           type="text"
           placeholder="Search"
-          className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+          className="w-full border border-gray-300 bg-[#202c33] rounded px-3 py-2 text-sm"
           value={searchInput}
           onChange={handelSearch}
         />
@@ -33,7 +33,7 @@ function Sidebar() {
               className={`capitalize mr-3 px-2 pb-1 border-b-2 cursor-pointer ${
                 activeTab === tab
                   ? "border-green-600 text-green-600 font-medium"
-                  : "border-transparent text-gray-500"
+                  : "border-transparent text-gray-400"
               }`}
               onClick={() => setActiveTab(tab)}
             >
@@ -42,12 +42,12 @@ function Sidebar() {
           ))}
         </div>
       </div>
-      <div className="p-3">
+      <div>
         {/* Group  */}
         {activeTab === "groups" && (
           <div>
             <button
-              className="w-full text-blue-500 border-b border-blue-500 py-2 cursor-pointer"
+              className="w-full text-blue-500 border-b border-amber-50 py-2 cursor-pointer"
               onClick={() => setModalOpen(true)}
             >
               + Create Group
@@ -61,7 +61,7 @@ function Sidebar() {
         {activeTab === "people" && (
           <div>
             <button
-              className="w-full text-blue-500 border-b border-blue-500 py-2 cursor-pointer"
+              className="w-full text-blue-500 border-b border-amber-50 py-2 cursor-pointer"
               onClick={() => setNewChatModalOpen(true)}
             >
               + Start New Chat

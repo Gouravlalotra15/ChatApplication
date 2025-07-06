@@ -7,15 +7,11 @@ function Message({ message, onDelete, type }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const dropdownRef = useRef(null);
 
-  // Get the current user's name dynamically based on active chat
   const currentUser = state.chats.find(
     (chat) => chat.id === state.activeChatId
   )?.name;
-
-  // Check if the message is from the current user
   const isOwn = message.user === currentUser;
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -45,22 +41,27 @@ function Message({ message, onDelete, type }) {
   const cancelDelete = () => {
     setShowDeleteModal(false);
   };
+  console.log(isOwn, "isOwn");
 
   return (
     <>
       <div className={`flex ${isOwn ? "justify-end" : "justify-start"}`}>
-        <div className=" px-3 py-2 bg-[#3a3a55] rounded-md shadow-sm text-sm relative">
+        <div
+          className={`px-3 py-2 rounded-md shadow-sm text-sm relative ${
+            isOwn ? "bg-[#005c4b]" : "bg-[#202c33]"
+          }`}
+        >
           {type === "group" && (
             <span className="text-white">{message.user}</span>
           )}
           <div className="flex gap-4">
-            <div className="max-w-2xl text-white">{message.content} </div>
+            <div className="max-w-2xl text-[#e9edef]">{message.content} </div>
             <div>
               {isOwn && (
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setShowDropdown(!showDropdown)}
-                    className="text-xs cursor-pointer p-1 hover:bg-gray-600 rounded"
+                    className="text-xs cursor-pointer p-1  rounded"
                   >
                     <span class="material-symbols-outlined text-white">
                       keyboard_arrow_down
@@ -71,7 +72,7 @@ function Message({ message, onDelete, type }) {
                     <div className="absolute right-0 top-6 bg-white border border-gray-200 rounded-md shadow-lg z-10 min-w-[120px] ">
                       <button
                         onClick={handleDeleteClick}
-                        className="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-gray-100 flex items-center gap-2 cursor-pointer"
+                        className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100 flex items-center gap-2 cursor-pointer"
                       >
                         <span className="material-symbols-outlined text-sm">
                           delete
@@ -84,7 +85,7 @@ function Message({ message, onDelete, type }) {
               )}
             </div>
           </div>
-          <p className="text-[10px] text-gray-500 text-right ">
+          <p className="text-[10px] text-[#e9edef] text-right ">
             {message.timestamp}
           </p>
         </div>
@@ -113,7 +114,7 @@ function Message({ message, onDelete, type }) {
               </button>
               <button
                 onClick={confirmDelete}
-                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                className="px-4 py-2 text-white border bg-blue-500 border-gray-300 rounded-md "
               >
                 Delete
               </button>

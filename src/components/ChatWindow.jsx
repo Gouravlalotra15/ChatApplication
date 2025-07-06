@@ -25,7 +25,7 @@ function ChatWindow() {
 
   if (!activeChat) {
     return (
-      <div className="w-2/3 h-full flex items-center justify-center text-white bg-[#2b2b3c]">
+      <div className="w-2/3 h-full flex items-center justify-center text-white bg-[#111b21]">
         Select a chat to start messaging
       </div>
     );
@@ -39,7 +39,7 @@ function ChatWindow() {
   };
 
   return (
-    <div className="w-2/3 h-full flex flex-col bg-[#2b2b3c]">
+    <div className="w-2/3 h-full flex flex-col bg-[#111b21]">
       <div className="flex justify-between items-center p-4 border-b border-amber-50 ">
         <div>
           <div className="flex gap-4 items-center">

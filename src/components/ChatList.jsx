@@ -29,8 +29,8 @@ function ChatList({ type, searchInput }) {
         <div
           key={ele.id}
           onClick={() => dispatch({ type: "SET_ACTIVE_CHAT", payload: ele.id })}
-          className={`flex items-center justify-between p-3 cursor-pointer border-b hover:bg-[#3a3a55] ${
-            state.activeChatId === ele.id ? "bg-[#3a3a55]" : ""
+          className={`flex items-center justify-between p-3 cursor-pointer border-b hover:bg-[#2a3942] ${
+            state.activeChatId === ele.id ? "bg-[#2a3942]" : ""
           }`}
         >
           <div className="flex items-center">
@@ -45,7 +45,7 @@ function ChatList({ type, searchInput }) {
             </div>
             <div className="ml-3">
               <p className="font-medium text-sm">{ele.name}</p>
-              <p className="text-xs text-gray-500 truncate max-w-[180px]">
+              <p className="text-xs text-gray-400 truncate max-w-[180px]">
                 {ele.lastMessage}
               </p>
             </div>
